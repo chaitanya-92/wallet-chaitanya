@@ -38,9 +38,9 @@ export default function Dashboard({
       transition={{ duration: 0.4 }}
       className="w-full"
     >
-      <div className="flex justify-between items-start mb-6 flex-wrap gap-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
         <div>
-          <h2 className="font-[Syne] font-extrabold text-[32px] text-[#eeeeff] leading-[1.1] tracking-tight">
+          <h2 className="font-[Syne] font-bold text-2xl md:text-3xl text-white">
             {dashboardContent.title}
           </h2>
           <p className="text-sm mt-1 text-[var(--text-muted)]">
@@ -48,11 +48,11 @@ export default function Dashboard({
           </p>
         </div>
 
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex flex-wrap gap-3">
           <ConfirmDialog
             trigger={
-              <Button variant="destructive" size="lg" className="gap-1.5">
-                <RotateCcw size={15} aria-hidden />
+              <Button variant="destructive" size="lg">
+                <RotateCcw size={15} />
                 {dashboardContent.resetButton}
               </Button>
             }
@@ -74,10 +74,9 @@ export default function Dashboard({
           <Button
             variant="accent"
             size="lg"
-            className="gap-1.5"
             onClick={() => setDialogOpen(true)}
           >
-            <Plus size={15} aria-hidden />
+            <Plus size={15} />
             {dashboardContent.addAccountButton}
           </Button>
         </div>
@@ -90,7 +89,7 @@ export default function Dashboard({
             size="icon-sm"
             onClick={() => setView("list")}
           >
-            <List size={16} aria-hidden />
+            <List size={16} />
           </Button>
 
           <Button
@@ -98,7 +97,7 @@ export default function Dashboard({
             size="icon-sm"
             onClick={() => setView("grid")}
           >
-            <LayoutGrid size={16} aria-hidden />
+            <LayoutGrid size={16} />
           </Button>
         </div>
       </div>
@@ -110,7 +109,7 @@ export default function Dashboard({
       />
 
       {accounts.length === 0 ? (
-        <div className="vault-card text-center py-14 space-y-4">
+        <div className="vault-card text-center py-16 space-y-4">
           <p className="text-[var(--text-muted)]">
             {dashboardContent.emptyState}
           </p>
@@ -118,10 +117,9 @@ export default function Dashboard({
           <Button
             variant="accent"
             size="lg"
-            className="gap-2"
             onClick={() => setDialogOpen(true)}
           >
-            <Plus size={14} aria-hidden />
+            <Plus size={14} />
             {dashboardContent.addFirstButton}
           </Button>
         </div>
@@ -130,8 +128,8 @@ export default function Dashboard({
           layout
           className={
             view === "grid"
-              ? "grid gap-5 grid-cols-[repeat(auto-fill,minmax(320px,1fr))]"
-              : "flex flex-col gap-4"
+              ? "grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              : "flex flex-col gap-5"
           }
         >
           <AnimatePresence mode="popLayout">

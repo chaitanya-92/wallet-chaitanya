@@ -14,7 +14,6 @@ export default function WalletFlow() {
   const wallet = useWallet()
 
   const isCentered = flow.step !== "dashboard"
-  const maxWidth = isCentered ? 480 : 1080
 
   const handleSelectNetwork = (chain: "solana" | "ethereum") => {
     wallet.setChain(chain)
@@ -58,12 +57,11 @@ export default function WalletFlow() {
 
   return (
     <div
-      className={`w-full transition-all duration-300 ease-out ${
+      className={`w-full mx-auto transition-all duration-300 ${
         isCentered
-          ? "min-h-[calc(100vh-60px)] flex items-center justify-center"
-          : "py-12"
+          ? "max-w-md flex items-center justify-center py-16"
+          : "max-w-6xl py-10"
       }`}
-      style={{ maxWidth }}
     >
       <AnimatePresence mode="wait">
         {flow.step === "welcome" && (
