@@ -23,7 +23,8 @@ export default function Dashboard({
   onResetWallet,
 }: Props) {
   const [view, setView] = useState<"list" | "grid">("list")
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const [addDialogOpen, setAddDialogOpen] = useState(false)
+  const [resetOpen, setResetOpen] = useState(false)
 
   const handleReset = () => {
     onResetWallet()
@@ -49,32 +50,19 @@ export default function Dashboard({
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <ConfirmDialog
-            trigger={
-              <Button variant="destructive" size="lg">
-                <RotateCcw size={15} />
-                {dashboardContent.resetButton}
-              </Button>
-            }
-            title={dashboardContent.resetDialogTitle}
-            description={
-              <>
-                {dashboardContent.resetDialogDescription(accounts.length)}
-                <br />
-                <span className="text-red-400">
-                  {dashboardContent.resetDialogWarning}
-                </span>
-              </>
-            }
-            confirmText={dashboardContent.resetConfirmButton}
+          <Button
             variant="destructive"
-            onConfirm={handleReset}
-          />
+            size="lg"
+            onClick={() => setResetOpen(true)}
+          >
+            <RotateCcw size={15} />
+            {dashboardContent.resetButton}
+          </Button>
 
           <Button
             variant="accent"
             size="lg"
-            onClick={() => setDialogOpen(true)}
+            onClick={() => setAddDialogOpen(true)}
           >
             <Plus size={15} />
             {dashboardContent.addAccountButton}
@@ -103,9 +91,27 @@ export default function Dashboard({
       </div>
 
       <AddAccountDialog
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
+        open={addDialogOpen}
+        onOpenChange={setAddDialogOpen}
         onAdd={onAddAccount}
+      />
+
+      <ConfirmDialog
+        open={resetOpen}
+        onOpenChange={setResetOpen}
+        title={dashboardContent.resetDialogTitle}
+        description={
+          <>
+            {dashboardContent.resetDialogDescription(accounts.length)}
+            <br />
+            <span className="text-red-400">
+              {dashboardContent.resetDialogWarning}
+            </span>
+          </>
+        }
+        confirmText={dashboardContent.resetConfirmButton}
+        variant="destructive"
+        onConfirm={handleReset}
       />
 
       {accounts.length === 0 ? (
@@ -117,7 +123,7 @@ export default function Dashboard({
           <Button
             variant="accent"
             size="lg"
-            onClick={() => setDialogOpen(true)}
+            onClick={() => setAddDialogOpen(true)}
           >
             <Plus size={14} />
             {dashboardContent.addFirstButton}

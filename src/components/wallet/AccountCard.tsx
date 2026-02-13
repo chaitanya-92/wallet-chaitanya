@@ -22,9 +22,13 @@ function truncate(str: string) {
 
 export default function AccountCard({ account, index, onDelete }: Props) {
   const [visible, setVisible] = useState(false)
+  const [deleteOpen, setDeleteOpen] = useState(false)
+
   const { copied: copiedPub, copy: copyPub } = useCopyToClipboard()
   const { copied: copiedPriv, copy: copyPriv } = useCopyToClipboard()
+
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   const chain = account.chain ?? "ethereum"
   const style = CHAIN_STYLES[chain]
 
@@ -33,15 +37,23 @@ export default function AccountCard({ account, index, onDelete }: Props) {
       setVisible(false)
       return
     }
+
     setVisible(true)
+
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => setVisible(false), 8000)
   }
 
   const handleCopyPub = () =>
     copyPub(account.publicKey, toastMessages.publicKeyCopied)
+
   const handleCopyPriv = () =>
     copyPriv(account.privateKey, toastMessages.privateKeyCopied)
+
+  const handleDelete = () => {
+    onDelete(index)
+    toast.success(toastMessages.accountRemoved)
+  }
 
   return (
     <motion.div
@@ -94,44 +106,23 @@ export default function AccountCard({ account, index, onDelete }: Props) {
             </div>
           </div>
 
-          <ConfirmDialog
-            trigger={
-              <Button
-                variant="ghost"
-                size="icon"
-                className="w-8 h-8 rounded-md"
-                style={{
-                  background: "rgba(255,90,90,0.08)",
-                  border: "1px solid rgba(255,90,90,0.2)",
-                  color: "#ff7070",
-                }}
-              >
-                <Trash2 size={14} />
-              </Button>
-            }
-            title={accountCardContent.deleteDialogTitle}
-            description={
-              <>
-                <strong>{account.name}</strong>{" "}
-                {accountCardContent.deleteDialogNameAction}
-                <br />
-                {accountCardContent.deleteDialogRederiveNote}
-              </>
-            }
-            confirmText={accountCardContent.deleteConfirmButton}
-            variant="destructive"
-            onConfirm={() => {
-              onDelete(index)
-              toast.success(toastMessages.accountRemoved)
+          <Button
+            variant="ghost"
+            size="icon"
+            className="w-8 h-8 rounded-md"
+            style={{
+              background: "rgba(255,90,90,0.08)",
+              border: "1px solid rgba(255,90,90,0.2)",
+              color: "#ff7070",
             }}
-          />
+            onClick={() => setDeleteOpen(true)}
+          >
+            <Trash2 size={14} />
+          </Button>
         </div>
 
         <div>
-          <p
-            className="text-[11px] uppercase mb-1 text-[var(--text-muted)]"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
-          >
+          <p className="text-[11px] uppercase mb-1 text-[var(--text-muted)]">
             {accountCardContent.publicKeyLabel}
           </p>
 
@@ -152,10 +143,7 @@ export default function AccountCard({ account, index, onDelete }: Props) {
         </div>
 
         <div>
-          <p
-            className="text-[11px] uppercase mb-1 text-[var(--text-muted)]"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
-          >
+          <p className="text-[11px] uppercase mb-1 text-[var(--text-muted)]">
             {accountCardContent.privateKeyLabel}
           </p>
 
@@ -204,13 +192,29 @@ export default function AccountCard({ account, index, onDelete }: Props) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-[11px] mt-1 text-red-400"
-              style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
               {accountCardContent.autoHideNotice}
             </motion.p>
           )}
         </div>
       </div>
+
+      <ConfirmDialog
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        title={accountCardContent.deleteDialogTitle}
+        description={
+          <>
+            <strong>{account.name}</strong>{" "}
+            {accountCardContent.deleteDialogNameAction}
+            <br />
+            {accountCardContent.deleteDialogRederiveNote}
+          </>
+        }
+        confirmText={accountCardContent.deleteConfirmButton}
+        variant="destructive"
+        onConfirm={handleDelete}
+      />
     </motion.div>
   )
 }

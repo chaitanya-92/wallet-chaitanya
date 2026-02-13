@@ -6,23 +6,21 @@ import "./index.css"
 
 export default function App() {
   return (
-    <div className="wallet-grid-bg min-h-screen flex flex-col overflow-x-hidden">
-      
+    <div className="wallet-grid-bg min-h-screen flex flex-col">
       <Navbar />
 
       <motion.main
-        initial={{ opacity: 0, y: 8 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="flex-1 pt-16 px-4 sm:px-6 lg:px-8"
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        className="flex-1 flex justify-center px-4 sm:px-6"
       >
-        <div className="max-w-7xl mx-auto w-full">
-          <WalletFlow />
-        </div>
+        <WalletFlow />
       </motion.main>
 
       <Toaster
         position="top-right"
+        offset={80}
         richColors
         expand={false}
         closeButton={false}
@@ -34,12 +32,11 @@ export default function App() {
             color: "#eeeeff",
             backdropFilter: "blur(20px)",
             fontFamily: "'DM Sans', sans-serif",
-            borderRadius: 12,
+            borderRadius: 14,
             boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
           },
         }}
       />
-      
     </div>
   )
 }

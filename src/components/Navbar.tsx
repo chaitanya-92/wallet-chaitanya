@@ -9,9 +9,8 @@ export default function Navbar() {
   const currentIndex = FLOW_STEPS.indexOf(step as (typeof FLOW_STEPS)[number])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#080b14]/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#080b14]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#080b14]/60">
       <div className="max-w-7xl mx-auto h-16 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-9 h-9 flex items-center justify-center rounded-md bg-gradient-to-br from-violet-600/30 to-indigo-600/30 border border-violet-500/20 shrink-0">
             <Layers size={18} className="text-violet-300" />
