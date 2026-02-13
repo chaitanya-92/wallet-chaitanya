@@ -1,19 +1,17 @@
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import type { ReactNode } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 import { commonContent } from "@/data"
 
 interface ConfirmDialogProps {
-  trigger: ReactNode
+  open: boolean
+  onOpenChange: (open: boolean) => void
   title: string
   description: ReactNode
   confirmText?: string
@@ -23,7 +21,8 @@ interface ConfirmDialogProps {
 }
 
 export default function ConfirmDialog({
-  trigger,
+  open,
+  onOpenChange,
   title,
   description,
   confirmText = "Confirm",
@@ -31,76 +30,35 @@ export default function ConfirmDialog({
   onConfirm,
   variant = "default",
 }: ConfirmDialogProps) {
-  const isDestructive = variant === "destructive"
+  const handleConfirm = () => {
+    onConfirm()
+    onOpenChange(false)
+  }
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+        </DialogHeader>
 
-      <AlertDialogContent
-        className="rounded-[22px] border-0 max-w-[420px]"
-        style={{
-          background: "rgba(13,17,32,0.98)",
-          border: "1px solid rgba(130,100,255,0.15)",
-          backdropFilter: "blur(24px)",
-        }}
-      >
-        <AlertDialogHeader className="text-center space-y-2">
-          <AlertDialogTitle
-            className="font-[Syne] font-bold text-xl text-[#eeeeff]"
-            style={{ letterSpacing: "-0.3px" }}
-          >
-            {title}
-          </AlertDialogTitle>
+        <div className="py-4 text-sm text-[var(--text-muted)]">
+          {description}
+        </div>
 
-          <AlertDialogDescription
-            className="text-sm leading-relaxed"
-            style={{
-              color: "var(--text-muted)",
-              fontFamily: "'DM Sans', sans-serif",
-            }}
-          >
-            {description}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-
-        <AlertDialogFooter className="flex gap-2.5 mt-2">
-          <AlertDialogCancel
-            className="flex-1 h-11 rounded-[11px] font-semibold border-0"
-            style={{
-              background: "rgba(130,100,255,0.08)",
-              border: "1px solid rgba(130,100,255,0.2)",
-              color: "#a090d8",
-              fontFamily: "'DM Sans', sans-serif",
-            }}
-          >
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => onOpenChange(false)}>
             {cancelText}
-          </AlertDialogCancel>
+          </Button>
 
-          <AlertDialogAction
-            onClick={onConfirm}
-            className="flex-1 h-11 rounded-[11px] font-semibold border-0"
-            style={
-              isDestructive
-                ? {
-                    background: "rgba(255,90,90,0.1)",
-                    border: "1px solid rgba(255,90,90,0.28)",
-                    color: "#ff7070",
-                    fontFamily: "'DM Sans', sans-serif",
-                  }
-                : {
-                    background: "linear-gradient(135deg, #8264ff, #5a3ecf)",
-                    border: "none",
-                    color: "#fff",
-                    boxShadow: "0 4px 20px rgba(130,100,255,0.35)",
-                    fontFamily: "'DM Sans', sans-serif",
-                  }
-            }
+          <Button
+            variant={variant === "destructive" ? "destructive" : "accent"}
+            onClick={handleConfirm}
           >
             {confirmText}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }

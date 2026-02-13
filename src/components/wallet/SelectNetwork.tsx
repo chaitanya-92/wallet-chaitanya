@@ -86,7 +86,7 @@ export default function SelectNetwork({ onSelect, onBack }: Props) {
       <Button
         variant="ghost"
         onClick={onBack}
-        className="text-[var(--text-muted)] hover:text-[var(--text-accent)] gap-1.5 px-0 text-sm"
+        className="text-[var(--text-muted)] hover:text-[var(--text-accent)] gap-1.5  text-sm"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         <ChevronLeft size={15} />
