@@ -10,9 +10,8 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#080b14]/80 backdrop-blur-xl">
-      <div className="max-w-[1100px] mx-auto h-16 px-6 flex items-center justify-between">
-        
-        {/* Left Section */}
+      <div className="max-w-8xl mx-auto h-16 px-6 flex items-center justify-between">
+
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 flex items-center justify-center rounded-md bg-gradient-to-br from-violet-600/30 to-indigo-600/30 border border-violet-500/20">
             <Layers size={18} className="text-violet-300" />
@@ -42,7 +41,7 @@ export default function Navbar() {
           </div>
         )}
 
-        {/* Network Badge */}
+       
         <Badge
           variant="outline"
           className="h-8 px-3 rounded-full text-xs font-medium border-green-400/20 bg-green-400/5 text-green-400 flex items-center gap-2"
