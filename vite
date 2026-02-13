@@ -1,0 +1,139 @@
+
+
+  VITE v7.3.1  ready in 196 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+12:03:12 PM [vite] (client) Pre-transform error: Fa
+12:03:12 PM [vite] (client) Pre-transform error: Failed to resolve import "@/lib/utils" from "src/comp
+12:03:12 PM [vite] (client) Pre-transform error: Failed to resolve import "@/lib/utils" from "src/components/ui/button.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/chaitanya/Desktop/web3-projects/chai
+  File: /Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/src/components/ui/button.tsx:5:19
+  3  |  import { cva } from "class-variance-authori
+  3  |  import { cva } from "class-variance-authority";
+  4  |  import { Slot } from "radix-ui";
+  5  |  import { cn } from "@/lib/utils";
+     |                      ^
+  6  |  const buttonVariants = cva(
+  7  |    "inline-flex items-center j-center 
+  7  |    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-med
+  7  |    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disa...
+12:03:12 PM [vite] (client) Pre-transform error: Fa
+12:03:12 PM [vite] (client) Pre-transform error: Failed to resolve import "@/lib/utils" from "src/comp
+12:03:12 PM [vite] (client) Pre-transform error: Failed to resolve import "@/lib/utils" from "src/components/ui/button.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/chaitanya/Desktop/web3-projects/chai
+  File: /Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/src/components/ui/button.tsx:5:19
+  3  |  import { cva } from "class-variance-authori
+  3  |  import { cva } from "class-variance-authority";
+  4  |  import { Slot } from "radix-ui";
+  5  |  import { cn } from "@/lib/utils";
+     |                      ^
+  6  |  const buttonVariants = cva(
+  7  |    "inline-flex items-center justify-center 
+  7  |    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-med
+  7  |    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disa... (x2)
+12:03:12 PM [vite] Internal server error: Failed to
+12:03:12 PM [vite] Internal server error: Failed to resolve import "@/lib/utils" from "src/components/
+12:03:12 PM [vite] Internal server error: Failed to resolve import "@/lib/utils" from "src/components/ui/button.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/chaitanya/Desktop/web3-projects/chai
+  File: /Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/src/components/ui/button.tsx:5:19
+  3  |  import { cva } from "class-variance-authori
+  3  |  import { cva } from "class-variance-authority";
+  4  |  import { Slot } from "radix-ui";
+  5  |  import { cn } from "@/lib/utils";
+     |                      ^
+  6  |  const buttonVariants = cva(
+  7  |    "inline-flex items-center justify-center 
+  7  |    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-med
+  7  |    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disa...
+      at TransformPluginContext._formatLog (file://
+      at TransformPluginContext._formatLog (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wa
+      at TransformPluginContext._formatLog (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:2
+      at TransformPluginContext._formatLog (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:28999:43)
+      at TransformPluginContext.error (file:///User
+      at TransformPluginContext.error (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/
+      at TransformPluginContext.error (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:28996:
+      at TransformPluginContext.error (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:28996:14)
+      at normalizeUrl (file:///Users/chaitanya/Desk
+      at normalizeUrl (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vit
+      at normalizeUrl (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:27119:18)
+      at process.processTicksAndRejections (node:in
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async file:///Users/chaitanya/Desktop/web3
+      at async file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/n
+      at async file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:27177:32
+      at async Promise.all (index 4)
+      at async TransformPluginContext.transform (fi
+      at async TransformPluginContext.transform (file:///Users/chaitanya/Desktop/web3-projects/chaitan
+      at async TransformPluginContext.transform (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config
+      at async TransformPluginContext.transform (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:27145:4)
+      at async EnvironmentPluginContainer.transform
+      at async EnvironmentPluginContainer.transform (file:///Users/chaitanya/Desktop/web3-projects/cha
+      at async EnvironmentPluginContainer.transform (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/co
+      at async EnvironmentPluginContainer.transform (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:28797:14)
+      at async loadAndTransform (file:///Users/chai
+      at async loadAndTransform (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_m
+      at async loadAndTransform (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:22670:26)
+      at async viteTransformMiddleware (file:///Use
+      at async viteTransformMiddleware (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet
+      at async viteTransformMiddleware (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:24542
+      at async viteTransformMiddleware (file:///Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/node_modules/vite/dist/node/chunks/config.js:24542:20)
+12:03:45 PM [vite] (client) hmr update /src/compone
+12:03:45 PM [vite] (client) hmr update /src/components/wallet/WalletGenerator.tsx, /src/components/wal
+12:03:45 PM [vite] (client) hmr update /src/components/wallet/WalletGenerator.tsx, /src/components/wallet/WalletCard.tsx
+12:03:48 PM [vite] (client) hmr update /src/compone
+12:03:48 PM [vite] (client) hmr update /src/components/ui/button.tsx
+12:03:49 PM [vite] (client) hmr update /src/compone
+12:03:49 PM [vite] (client) hmr update /src/components/ui/button.tsx (x2)
+12:03:49 PM [vite] (client) hmr update /src/compone
+12:03:49 PM [vite] (client) hmr update /src/components/ui/button.tsx (x3)
+12:03:50 PM [vite] (client) hmr update /src/compone
+12:03:50 PM [vite] (client) hmr update /src/components/ui/button.tsx (x4)
+12:03:50 PM [vite] (client) hmr update /src/compone
+12:03:50 PM [vite] (client) hmr update /src/components/ui/button.tsx (x5)
+12:03:54 PM [vite] (client) ✨ new dependencies opt
+12:03:54 PM [vite] (client) ✨ new dependencies optimized: clsx, tailwind-merge
+12:03:54 PM [vite] (client) ✨ optimizendenci
+12:03:54 PM [vite] (client) ✨ optimized dependencies changed. reloading
+12:04:34 PM [vite] (client) hmr update /src/index.c
+12:04:34 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx, /sr
+12:04:34 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx, /src/components/wallet/WalletCard.tsx
+12:04:48 PM [vite] (client) hmr update /src/index.c
+12:04:48 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx
+12:04:48 PM [vite] (client) hmr update /src/index.c
+12:04:48 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx (x2)
+12:04:48 PM [vite] (client) hmr update /src/index.c
+12:04:48 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx (x3)
+12:04:49 PM [vite] (client) hmr update /src/index.c
+12:04:49 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsxx4)
+12:05:10 PM [vite] (client) hmr update /src/index.c
+12:05:10 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx (x5)
+12:05:21 PM [vite] (client) hmr update /src/index.c
+12:05:21 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx (x6)
+12:05:21 PM [vite] (client) hmr update /src/index.c
+12:05:21 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx (x7)
+12:05:42 PM [vite] (client) hmr update /src/index.c
+12:05:42 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx (x8)
+12:05:44 PM [vite] (client) hmr update /src/index.c
+12:05:44 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/MnemonicDisplay.tsx
+12:05:44 PM [vite] (client) hmr update /src/index.c
+12:05:44 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/MnemonicDisplay.tsx (x2)
+12:05:49 PM [vite] (client) hmr update /src/index.c
+12:05:49 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletGenerator.tsx
+12:05:56 PM [vite] (client) hmr update /src/index.c
+12:05:56 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletCard.tsx
+12:05:56 PM [vite] (client) hmr update /src/index.c
+12:05:56 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletCard.tsx (x2)
+12:05:56 PM [vite] (client) hmr update /src/index.c
+12:05:56 PM [vite] (client) hmr update /src/index.css, /src/components/wallet/WalletCard.tsx (x3)
+12:08:55 PM [vite] changed tsconfig file detected: 
+12:08:55 PM [vite] changed tsconfig file detected: /Users/chaitanya/Desktop/web3-projects/chaitanya-wa
+12:08:55 PM [vite] changed tsconfig file detected: /Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/tsconfig.app.json - Clearing cache and forcing
+12:08:55 PM [vite] changed tsconfig file detected: /Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/tsconfig.app.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with 
+12:08:55 PM [vite] changed tsconfig file detected: /Users/chaitanya/Desktop/web3-projects/chaitanya-wallet/tsconfig.app.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+12:08:55 PM [vite] (client) hmr update /src/index.c
+12:08:55 PM [vite] (client) hmr update /src/index.css
