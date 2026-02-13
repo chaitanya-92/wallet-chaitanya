@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { Plus, RotateCcw, LayoutGrid, List } from "lucide-react"
+import { Plus, Trash2, LayoutGrid, List } from "lucide-react"
 import { toast } from "sonner"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -24,11 +24,11 @@ export default function Dashboard({
 }: Props) {
   const [view, setView] = useState<"list" | "grid">("list")
   const [addDialogOpen, setAddDialogOpen] = useState(false)
-  const [resetOpen, setResetOpen] = useState(false)
+  const [clearOpen, setClearOpen] = useState(false)
 
-  const handleReset = () => {
+  const handleClearWallet = () => {
     onResetWallet()
-    toast.success(toastMessages.walletCleared)
+    toast.success("Wallet cleared")
   }
 
   return (
@@ -42,10 +42,10 @@ export default function Dashboard({
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
         <div>
           <h2 className="font-[Syne] font-bold text-2xl md:text-3xl text-white">
-            {dashboardContent.title}
+            Your Accounts
           </h2>
           <p className="text-sm mt-1 text-[var(--text-muted)]">
-            {dashboardContent.managedLabel(accounts.length)}
+            {accounts.length} account{accounts.length !== 1 && "s"} managed
           </p>
         </div>
 
@@ -53,10 +53,10 @@ export default function Dashboard({
           <Button
             variant="destructive"
             size="lg"
-            onClick={() => setResetOpen(true)}
+            onClick={() => setClearOpen(true)}
           >
-            <RotateCcw size={15} />
-            {dashboardContent.resetButton}
+            <Trash2 size={15} />
+            Clear Wallet
           </Button>
 
           <Button
@@ -65,7 +65,7 @@ export default function Dashboard({
             onClick={() => setAddDialogOpen(true)}
           >
             <Plus size={15} />
-            {dashboardContent.addAccountButton}
+            Add Account
           </Button>
         </div>
       </div>
@@ -97,27 +97,27 @@ export default function Dashboard({
       />
 
       <ConfirmDialog
-        open={resetOpen}
-        onOpenChange={setResetOpen}
-        title={dashboardContent.resetDialogTitle}
+        open={clearOpen}
+        onOpenChange={setClearOpen}
+        title="Clear Wallet?"
         description={
           <>
-            {dashboardContent.resetDialogDescription(accounts.length)}
+            This will permanently remove all accounts and wallet data.
             <br />
             <span className="text-red-400">
-              {dashboardContent.resetDialogWarning}
+              This action cannot be undone.
             </span>
           </>
         }
-        confirmText={dashboardContent.resetConfirmButton}
+        confirmText="Clear Wallet"
         variant="destructive"
-        onConfirm={handleReset}
+        onConfirm={handleClearWallet}
       />
 
       {accounts.length === 0 ? (
         <div className="vault-card text-center py-16 space-y-4">
           <p className="text-[var(--text-muted)]">
-            {dashboardContent.emptyState}
+            No accounts yet.
           </p>
 
           <Button
@@ -126,7 +126,7 @@ export default function Dashboard({
             onClick={() => setAddDialogOpen(true)}
           >
             <Plus size={14} />
-            {dashboardContent.addFirstButton}
+            Add First Account
           </Button>
         </div>
       ) : (
