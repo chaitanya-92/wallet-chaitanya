@@ -7,7 +7,7 @@ const BACK_MAP: Partial<Record<Step, Step>> = {
   create: "select-network",
   "confirm-seed": "create",
   import: "select-network",
-  dashboard: "confirm-seed",
+  dashboard: "welcome",
 }
 
 export function useWalletFlow() {

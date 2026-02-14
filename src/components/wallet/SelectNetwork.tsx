@@ -1,14 +1,13 @@
 import { motion } from "framer-motion"
-import { ChevronLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { networks, networkContent, commonContent } from "@/data"
+
+import { networks, networkContent } from "@/data"
 
 interface Props {
   onSelect: (chain: "solana" | "ethereum") => void
   onBack: () => void
 }
 
-export default function SelectNetwork({ onSelect, onBack }: Props) {
+export default function SelectNetwork({ onSelect }: Props) {
   return (
     <motion.div
       key="select-network"
@@ -83,15 +82,7 @@ export default function SelectNetwork({ onSelect, onBack }: Props) {
         ))}
       </div>
 
-      <Button
-        variant="ghost"
-        onClick={onBack}
-        className="text-[var(--text-muted)] hover:text-[var(--text-accent)] gap-1.5  text-sm"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
-      >
-        <ChevronLeft size={15} />
-        {commonContent.back}
-      </Button>
+
     </motion.div>
   )
 }

@@ -5,7 +5,7 @@ import html2canvas from "html2canvas"
 import { Button } from "@/components/ui/button"
 import MnemonicGrid from "./MnemonicGrid"
 import { fadeInUp } from "@/lib/motion"
-import { createWalletContent, commonContent } from "@/data"
+import { createWalletContent } from "@/data"
 
 interface Props {
   mnemonic: string
@@ -46,7 +46,7 @@ export default function CreateWallet({
       initial="hidden"
       animate="show"
       exit="exit"
-      className="w-full max-w-3xl mx-auto space-y-8"  // 👈 increased width
+      className="w-full max-w-3xl mx-auto space-y-8"
     >
       <div className="text-center space-y-2">
         <h2>{createWalletContent.title}</h2>
@@ -56,7 +56,7 @@ export default function CreateWallet({
       {mnemonic && (
         <div className="space-y-4">
           <div ref={captureRef}>
-            <MnemonicGrid mnemonic={mnemonic} startVisible />
+            <MnemonicGrid mnemonic={mnemonic} startVisible={false} />
           </div>
 
           <div className="flex justify-center">
@@ -83,11 +83,11 @@ export default function CreateWallet({
         </Button>
 
         <Button
-          variant="ghost"
+          variant="default"
           className="h-10 text-sm"
           onClick={onBack}
         >
-          {commonContent.back}
+          {createWalletContent.cancelButton}
         </Button>
       </div>
 

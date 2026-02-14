@@ -22,7 +22,7 @@ const buttonVariants = cva(
         default:
           "bg-[var(--surface)] text-[var(--text-primary)] border border-[var(--border)] hover:bg-[var(--accent-dim)]",
         accent:
-          "bg-gradient-to-br from-[#8264ff] to-[#5a3ecf] text-white shadow-lg shadow-violet-500/30 hover:opacity-90",
+          "bg-gradient-to-br from-[#8264ff] to-[#5a3ecf] text-white shadow-sm shadow-violet-500/30 hover:opacity-90",
         ghost:
           "bg-transparent text-[var(--text-accent)] hover:bg-[var(--accent-dim)]",
         outline:

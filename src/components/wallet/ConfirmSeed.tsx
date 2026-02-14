@@ -19,6 +19,7 @@ export default function ConfirmSeed({ onContinue, onBack }: Props) {
       animate="show"
       exit="exit"
       className="flow-container space-y-8"
+      
     >
       <div className="text-center space-y-2">
         <h2>{confirmSeedContent.title}</h2>
@@ -42,8 +43,8 @@ export default function ConfirmSeed({ onContinue, onBack }: Props) {
         >
           {confirmSeedContent.continueButton}
         </Button>
-        <Button variant="ghost" onClick={onBack}>
-          {commonContent.back}
+        <Button variant="default" onClick={onBack}>
+          {commonContent.cancel}
         </Button>
       </div>
     </motion.div>

@@ -48,6 +48,7 @@ export interface CreateWalletContent {
   title: string
   subtitle: string
   confirmButton: string
+  cancelButton: string
 }
 
 export interface ConfirmSeedContent {
