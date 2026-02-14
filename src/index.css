@@ -67,7 +67,8 @@ p {
 }
 
 .wallet-grid-bg {
-  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   background-color: var(--background);
   background-image:
     linear-gradient(rgba(130, 100, 255, 0.02) 1px, transparent 1px),
