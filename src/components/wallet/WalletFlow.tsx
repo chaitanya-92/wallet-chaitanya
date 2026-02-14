@@ -59,7 +59,7 @@ export default function WalletFlow() {
     <div
       className={`w-full mx-auto transition-all duration-300 ${
         isCentered
-          ? "max-w-md flex items-center justify-center py-16"
+          ? "max-w-6xl flex items-center justify-center py-16"
           : "max-w-6xl py-10"
       }`}
     >
