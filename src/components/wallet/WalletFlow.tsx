@@ -16,6 +16,8 @@ export default function WalletFlow() {
   const flow = useWalletFlow()
 
   const isDashboard = flow.step === "dashboard"
+  const isScrollable =
+    flow.step === "dashboard" || flow.step === "create"
 
   const handleSelectNetwork = (chain: "solana" | "ethereum") => {
     wallet.setChain(chain)
@@ -61,9 +63,11 @@ export default function WalletFlow() {
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto px-4">
-      {!isDashboard && (
-        <div className="min-h-[calc(100vh-64px)] flex items-center justify-center ">
+    <div className="relative w-full h-full max-w-6xl mx-auto px-4 flex flex-col">
+
+      {/* NON-SCROLL FLOWS (CENTERED) */}
+      {!isScrollable && (
+        <div className="flex-1 flex items-center justify-center">
           <AnimatePresence mode="wait">
             {flow.step === "welcome" && (
               <Welcome
@@ -77,16 +81,6 @@ export default function WalletFlow() {
               <SelectNetwork
                 key="select-network"
                 onSelect={handleSelectNetwork}
-                onBack={flow.goBack}
-              />
-            )}
-
-            {flow.step === "create" && wallet.chain && (
-              <CreateWallet
-                key="create"
-                mnemonic={wallet.mnemonic}
-                createMnemonic={wallet.createMnemonic}
-                onConfirm={() => flow.next("confirm-seed")}
                 onBack={flow.goBack}
               />
             )}
@@ -110,20 +104,32 @@ export default function WalletFlow() {
         </div>
       )}
 
-      {isDashboard && (
-        <div className="py-10">
-          <Dashboard
-            accounts={wallet.accounts}
-            onAddAccount={(name: string) =>
-              wallet.deriveAccount(wallet.accounts.length, name)
-            }
-            onDeleteAccount={wallet.deleteAccount}
-            onResetWallet={handleReset}
-          />
+      {/* SCROLLABLE FLOWS */}
+      {isScrollable && (
+        <div className="flex-1 overflow-y-auto py-10">
+          {flow.step === "create" && wallet.chain && (
+            <CreateWallet
+              mnemonic={wallet.mnemonic}
+              createMnemonic={wallet.createMnemonic}
+              onConfirm={() => flow.next("confirm-seed")}
+              onBack={flow.goBack}
+            />
+          )}
+
+          {isDashboard && (
+            <Dashboard
+              accounts={wallet.accounts}
+              onAddAccount={(name: string) =>
+                wallet.deriveAccount(wallet.accounts.length, name)
+              }
+              onDeleteAccount={wallet.deleteAccount}
+              onResetWallet={handleReset}
+            />
+          )}
         </div>
       )}
 
-      {!isDashboard && flow.step !== "welcome" && (
+      {!isScrollable && flow.step !== "welcome" && (
         <div className="absolute top-6 left-4 z-40">
           <Button
             variant="ghost"
