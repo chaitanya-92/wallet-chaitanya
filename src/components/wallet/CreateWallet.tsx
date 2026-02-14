@@ -73,7 +73,7 @@ export default function CreateWallet({
         </div>
       )}
 
-      <div className="flex flex-col gap-3 max-w-md mx-auto">
+      <div className="flex flex-col gap-3 max-w-md mx-auto ">
         <Button
           variant="accent"
           className="h-11 text-sm"
@@ -84,7 +84,7 @@ export default function CreateWallet({
 
         <Button
           variant="default"
-          className="h-10 text-sm"
+          className="h-11 text-sm"
           onClick={onBack}
         >
           {createWalletContent.cancelButton}
