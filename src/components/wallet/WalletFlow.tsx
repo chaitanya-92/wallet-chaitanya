@@ -61,9 +61,9 @@ export default function WalletFlow() {
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto">
+    <div className="relative w-full max-w-6xl mx-auto px-4">
       {!isDashboard && (
-        <div className="min-h-[calc(100vh-64px)] flex items-center justify-center">
+        <div className="min-h-[calc(100vh-64px)] flex items-center justify-center ">
           <AnimatePresence mode="wait">
             {flow.step === "welcome" && (
               <Welcome
