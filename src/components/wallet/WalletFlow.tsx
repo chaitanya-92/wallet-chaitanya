@@ -1,4 +1,5 @@
 import { AnimatePresence } from "framer-motion"
+import { ArrowLeft } from "lucide-react"
 import Welcome from "./Welcome"
 import SelectNetwork from "./SelectNetwork"
 import CreateWallet from "./CreateWallet"
@@ -8,6 +9,7 @@ import Dashboard from "./Dashboard"
 import { useWalletFlow } from "@/hooks/useWalletFlow"
 import { useWallet } from "@/hooks/useWallet"
 import { STORAGE_KEYS } from "@/config/constants"
+import { Button } from "@/components/ui/button"
 
 export default function WalletFlow() {
   const flow = useWalletFlow()
@@ -57,12 +59,27 @@ export default function WalletFlow() {
 
   return (
     <div
-      className={`w-full mx-auto transition-all duration-300 ${
+      className={`relative w-full mx-auto transition-all duration-300 ${
         isCentered
           ? "max-w-6xl flex items-center justify-center py-16"
           : "max-w-6xl py-10"
       }`}
     >
+      {/* ✅ Static Back Button */}
+      {flow.step !== "welcome" && flow.step !== "dashboard" && (
+        <div className="absolute top-6 left-4 z-40">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={flow.goBack}
+            className="gap-2 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10"
+          >
+            <ArrowLeft size={16} />
+            Back
+          </Button>
+        </div>
+      )}
+
       <AnimatePresence mode="wait">
         {flow.step === "welcome" && (
           <Welcome

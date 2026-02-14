@@ -19,12 +19,13 @@ export default function Welcome({ onCreate, onImport }: Props) {
       className="w-full max-w-[480px] text-center relative px-2"
     >
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[500px] h-[500px] rounded-full pointer-events-none z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[500px] aspect-square rounded-full pointer-events-none z-0"
         style={{
           background:
             "radial-gradient(circle, rgba(130,100,255,0.13) 0%, transparent 70%)",
         }}
       />
+
 
       <div className="relative z-10">
         <motion.div variants={staggerItem} className="flex justify-center mb-7">
