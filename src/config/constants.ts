@@ -11,8 +11,10 @@ export const FLOW_STEPS = [
   "select-network",
   "create",
   "confirm-seed",
+  "import",
   "dashboard",
 ] as const
+
 
 export const RPC = {
   SOLANA: import.meta.env.VITE_SOLANA_RPC ?? "https://api.mainnet-beta.solana.com",

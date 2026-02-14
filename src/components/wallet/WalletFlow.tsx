@@ -6,21 +6,22 @@ import CreateWallet from "./CreateWallet"
 import ConfirmSeed from "./ConfirmSeed"
 import ImportWallet from "./ImportWallet"
 import Dashboard from "./Dashboard"
-import { useWalletFlow } from "@/hooks/useWalletFlow"
 import { useWallet } from "@/hooks/useWallet"
+import { useWalletFlow } from "@/context/WalletFlowContext"
 import { STORAGE_KEYS } from "@/config/constants"
 import { Button } from "@/components/ui/button"
 
 export default function WalletFlow() {
-  const flow = useWalletFlow()
   const wallet = useWallet()
+  const flow = useWalletFlow()
 
-  const isCentered = flow.step !== "dashboard"
+  const isDashboard = flow.step === "dashboard"
 
   const handleSelectNetwork = (chain: "solana" | "ethereum") => {
     wallet.setChain(chain)
     const isImport =
       localStorage.getItem(STORAGE_KEYS.IS_IMPORT) === "true"
+
     flow.next(isImport ? "import" : "create")
   }
 
@@ -42,10 +43,12 @@ export default function WalletFlow() {
 
   const handleImport = async (mnemonic: string) => {
     wallet.importMnemonic(mnemonic)
+
     if (!wallet.chain) {
       flow.next("select-network")
       return
     }
+
     await wallet.deriveAccount(0, "Account 1")
     localStorage.removeItem(STORAGE_KEYS.IS_IMPORT)
     flow.next("dashboard")
@@ -58,14 +61,69 @@ export default function WalletFlow() {
   }
 
   return (
-    <div
-      className={`w-full mx-auto transition-all duration-300 ${
-        isCentered
-          ? "max-w-6xl min-h-[calc(100vh-64px)] flex items-center justify-center relative"
-          : "max-w-6xl py-10 "
-      }`}
-    >
-      {flow.step !== "welcome" && flow.step !== "dashboard" && (
+    <div className="relative w-full max-w-6xl mx-auto">
+      {!isDashboard && (
+        <div className="min-h-[calc(100vh-64px)] flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            {flow.step === "welcome" && (
+              <Welcome
+                key="welcome"
+                onCreate={handleCreateStart}
+                onImport={handleImportStart}
+              />
+            )}
+
+            {flow.step === "select-network" && (
+              <SelectNetwork
+                key="select-network"
+                onSelect={handleSelectNetwork}
+                onBack={flow.goBack}
+              />
+            )}
+
+            {flow.step === "create" && wallet.chain && (
+              <CreateWallet
+                key="create"
+                mnemonic={wallet.mnemonic}
+                createMnemonic={wallet.createMnemonic}
+                onConfirm={() => flow.next("confirm-seed")}
+                onBack={flow.goBack}
+              />
+            )}
+
+            {flow.step === "confirm-seed" && (
+              <ConfirmSeed
+                key="confirm-seed"
+                onContinue={handleFirstAccount}
+                onBack={flow.goBack}
+              />
+            )}
+
+            {flow.step === "import" && (
+              <ImportWallet
+                key="import"
+                onImport={handleImport}
+                onBack={flow.goBack}
+              />
+            )}
+          </AnimatePresence>
+        </div>
+      )}
+
+      {isDashboard && (
+        <div className="py-10">
+          <Dashboard
+            accounts={wallet.accounts}
+            onAddAccount={(name: string) =>
+              wallet.deriveAccount(wallet.accounts.length, name)
+            }
+            onDeleteAccount={wallet.deleteAccount}
+            onResetWallet={handleReset}
+          />
+        </div>
+      )}
+
+      {!isDashboard && flow.step !== "welcome" && (
         <div className="absolute top-6 left-4 z-40">
           <Button
             variant="ghost"
@@ -78,62 +136,6 @@ export default function WalletFlow() {
           </Button>
         </div>
       )}
-
-      <AnimatePresence mode="wait">
-        {flow.step === "welcome" && (
-          <Welcome
-            key="welcome"
-            onCreate={handleCreateStart}
-            onImport={handleImportStart}
-          />
-        )}
-
-        {flow.step === "select-network" && (
-          <SelectNetwork
-            key="select-network"
-            onSelect={handleSelectNetwork}
-            onBack={flow.goBack}
-          />
-        )}
-
-        {flow.step === "create" && wallet.chain && (
-          <CreateWallet
-            key="create"
-            mnemonic={wallet.mnemonic}
-            createMnemonic={wallet.createMnemonic}
-            onConfirm={() => flow.next("confirm-seed")}
-            onBack={flow.goBack}
-          />
-        )}
-
-        {flow.step === "confirm-seed" && (
-          <ConfirmSeed
-            key="confirm-seed"
-            onContinue={handleFirstAccount}
-            onBack={flow.goBack}
-          />
-        )}
-
-        {flow.step === "import" && (
-          <ImportWallet
-            key="import"
-            onImport={handleImport}
-            onBack={flow.goBack}
-          />
-        )}
-
-        {flow.step === "dashboard" && wallet.chain && (
-          <Dashboard
-            key="dashboard"
-            accounts={wallet.accounts}
-            onAddAccount={(name: string) =>
-              wallet.deriveAccount(wallet.accounts.length, name)
-            }
-            onDeleteAccount={wallet.deleteAccount}
-            onResetWallet={handleReset}
-          />
-        )}
-      </AnimatePresence>
     </div>
   )
 }

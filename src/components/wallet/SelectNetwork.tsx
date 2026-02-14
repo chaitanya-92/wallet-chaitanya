@@ -7,7 +7,7 @@ interface Props {
   onBack: () => void
 }
 
-export default function SelectNetwork({ onSelect, onBack }: Props) {
+export default function SelectNetwork({ onSelect }: Props) {
   return (
     <motion.div
       key="select-network"
