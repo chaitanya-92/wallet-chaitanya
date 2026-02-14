@@ -7,7 +7,6 @@ import ConfirmDialog from "@/components/ui/ConfirmDialog"
 import AccountCard from "./AccountCard"
 import AddAccountDialog from "./AddAccountDialog"
 import type { WalletAccount } from "@/types"
-import { dashboardContent, toastMessages } from "@/data"
 
 interface Props {
   accounts: WalletAccount[]
