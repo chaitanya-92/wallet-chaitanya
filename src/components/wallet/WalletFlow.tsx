@@ -59,13 +59,12 @@ export default function WalletFlow() {
 
   return (
     <div
-      className={`relative w-full mx-auto transition-all duration-300 ${
+      className={`w-full mx-auto transition-all duration-300 ${
         isCentered
-          ? "max-w-6xl flex items-center justify-center py-16"
-          : "max-w-6xl py-10"
+          ? "max-w-6xl min-h-[calc(100vh-64px)] flex items-center justify-center relative"
+          : "max-w-6xl py-10 "
       }`}
     >
-      {/* ✅ Static Back Button */}
       {flow.step !== "welcome" && flow.step !== "dashboard" && (
         <div className="absolute top-6 left-4 z-40">
           <Button

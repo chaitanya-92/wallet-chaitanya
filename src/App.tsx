@@ -10,18 +10,16 @@ export default function App() {
       <Navbar />
 
       <motion.main
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="flex-1  px-4 sm:px-6 relative"
-    >
-      <WalletFlow />
-    </motion.main>
-
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        className="flex-1 relative px-4 sm:px-6"
+      >
+        <WalletFlow />
+      </motion.main>
 
       <Toaster
-        position="top-right"
-        offset={80}
+        position="bottom-right"
         richColors
         expand={false}
         closeButton={false}
