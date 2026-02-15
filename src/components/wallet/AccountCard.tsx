@@ -16,7 +16,7 @@ interface Props {
   onDelete: (index: number) => void
 }
 
-const AUTO_HIDE_SECONDS = 8
+const AUTO_HIDE_SECONDS = 6
 
 function truncate(str: string) {
   return str.slice(0, 10) + "…" + str.slice(-8)
@@ -216,9 +216,9 @@ export default function AccountCard({ account, index, onDelete }: Props) {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-[11px] mt-1 text-red-400"
+              className="text-[11px] mt-1 "
             >
-              Auto hides in {secondsLeft}s
+              <span className="text-red-400">Auto hides in {secondsLeft}s</span>
             </motion.p>
           )}
         </div>
